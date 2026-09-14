@@ -97,6 +97,9 @@ body {
   background: var(--navy);
   color: white;
 }
+.mobile-full-width {
+  display: inline-block;
+}
 .hero-section {
   position: relative;
   overflow: hidden;
@@ -334,6 +337,14 @@ h2 {
   color: var(--blue);
   font-size: 0.85rem;
   padding: 1.3rem 0;
+}
+.footer-socials a {
+  color: var(--blue);
+  text-decoration: none;
+}
+.footer-socials a:hover,
+.footer-socials a:focus-visible {
+  color: var(--yellow);
 }
 .page-hero {
   padding: 6.5rem 0 6rem;
@@ -602,12 +613,8 @@ h2 {
     background: var(--cream);
     border-top: 2px solid var(--navy);
     border-bottom: 2px solid var(--navy);
-    flex-basis: 100%;
-    margin-left: calc(50% - 50vw);
     margin-top: 1rem;
-    margin-right: calc(50% - 50vw);
-    padding: 0.35rem max(1rem, calc((100vw - 1320px) / 2)) 1rem;
-    width: 100vw;
+    padding: 0.35rem 1rem 1rem;
   }
   .navbar-nav {
     align-items: stretch !important;
@@ -621,9 +628,10 @@ h2 {
     text-align: center;
   }
   .nav-cta {
-    display: block;
     margin-top: 0.85rem;
-    text-align: center;
+    width: 100%;
+  }
+  .mobile-full-width {
     width: 100%;
   }
   .flyer-frame {

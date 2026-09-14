@@ -11,7 +11,7 @@ const links = [
 ];
 ---
 <nav class="navbar navbar-expand-lg site-nav" aria-label="Main navigation">
-  <div class="container">
+  <div class="container-fluid px-3">
     <a class="navbar-brand" href="/" aria-label="Honco Monco Music home">
       <span class="brand-mark">♪</span>
       <span>honco monco music</span>
@@ -19,14 +19,14 @@ const links = [
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+    <div class="collapse navbar-collapse w-100" id="mainNav">
+      <ul class="navbar-nav d-grid d-lg-flex w-100 ms-lg-auto align-items-lg-center gap-0 gap-lg-3">
         {links.map((link) => (
           <li class="nav-item">
             <a class:list={['nav-link', { active: current === link.key }]} href={link.href} aria-current={current === link.key ? 'page' : undefined}>{link.label}</a>
           </li>
         ))}
-        <li class="nav-item"><a class="btn btn-coral nav-cta" href="/book-a-class">Book a class <span aria-hidden="true">↗</span></a></li>
+        <li class="nav-item"><a class="btn btn-coral nav-cta d-block d-lg-inline-block text-center" href="/book-a-class">Book a class</a></li>
       </ul>
     </div>
   </div>
