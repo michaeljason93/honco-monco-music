@@ -13,22 +13,46 @@ import Footer from '../components/Footer.astro';
           <div class="col-lg-6">
             <!-- <p class="eyebrow eyebrow-dark">Let's get in touch</p> -->
             <h2>Let's get in touch</h2>
-            <p class="page-intro">Do you have any questions about classes, availability or anything else? Please complete the form below and we will be in touch with you soon.</p>
-            <form class="contact-form mt-4">
-              <label for="name">Your name</label><input id="name" type="text" placeholder="Your name" />
-              <label for="email">Email address</label><input id="email" type="email" placeholder="you@example.com" />
-              <label for="message">How can we help?</label><textarea id="message" rows="5" placeholder="Tell us a little more..."></textarea>
-              <button class="btn btn-navy mobile-full-width" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+            <p class="page-intro mt-3">Do you have any questions about classes, availability or anything else? Please complete the form below and we will be in touch with you soon.</p>
+            <form class="contact-form mt-4" action="https://api.web3forms.com/submit" method="POST">
+              <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+              <input type="hidden" name="subject" value="New Honco Monco Music enquiry" />
+              <input type="hidden" name="from_name" value="Honco Monco Music website" />
+              <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" placeholder="Your phone number" autocomplete="tel" />
+
+              <label for="child-first-name">Child’s first name</label>
+              <input id="child-first-name" name="child_first_name" type="text" placeholder="Child’s first name" autocomplete="off" required />
+
+              <label for="child-age">Child’s age</label>
+              <input id="child-age" name="child_age" type="text" placeholder="Child’s age" inputmode="numeric" required />
+
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell us a little more..."></textarea>
+
+              <div class="h-captcha d-flex justify-content-center" data-captcha="true"></div>
+              <button class="btn btn-navy w-100 w-lg-auto" type="submit">Send enquiry</button>
             </form>
           </div>
           <div class="col-lg-5 offset-lg-1">
             <div class="side-note">
                 <p class="eyebrow eyebrow-dark">Prefer a quick hello?</p>
+                <h3>Contact directly</h3>
+                <a class="contact-email contact-email-small" href="mailto:honcomoncomusic@gmail.com">honcomoncomusic@gmail.com</a>
+                <a class="phone" href="tel:07835824311">07835 824 311</a>
+                <hr />
                 <h3>Book a class</h3>
                 <p>Find upcoming sessions and reserve a taster through our booking page.</p>
-                <a class="btn btn-navy mobile-full-width" href="/book-a-class">Book a class <span aria-hidden="true">↗</span></a><hr />
-                <h3>Contact directly</h3>
-                <a class="contact-email contact-email-small" href="mailto:honcomoncomusic@gmail.com">honcomoncomusic@gmail.com</a><a class="phone" href="tel:07835824311">07835 824 311</a>
+                <a class="btn btn-navy w-100 w-lg-auto" href="/book-a-class">Book a class</a>
+
             </div>
             <div class="photo-placeholder photo-placeholder-peach mt-4">Photo placeholder</div>
           </div>
@@ -39,3 +63,5 @@ import Footer from '../components/Footer.astro';
   </main>
   <Footer />
 </Layout>
+
+<script src="https://web3forms.com/client/script.js" async defer></script>

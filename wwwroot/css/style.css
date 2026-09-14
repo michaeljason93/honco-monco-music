@@ -97,9 +97,6 @@ body {
   background: var(--navy);
   color: white;
 }
-.mobile-full-width {
-  display: inline-block;
-}
 .hero-section {
   position: relative;
   overflow: hidden;
@@ -280,7 +277,7 @@ h2 {
 }
 .venue-section {
   background: var(--blue);
-  padding: 5rem 0;
+  padding: 3rem 0;
 }
 .venue-details {
   background: var(--cream);
@@ -583,8 +580,6 @@ h2 {
   color: var(--navy-soft);
 }
 .testimonial-controls {
-  margin-left: auto;
-  margin-right: auto;
   max-width: 48rem;
 }
 .testimonial-button {
@@ -635,6 +630,12 @@ h2 {
 }
 .contact-form textarea {
   resize: vertical;
+}
+.contact-form .hidden {
+  display: none;
+}
+.contact-form .h-captcha {
+  width: 100%;
 }
 .contact-form button {
   justify-self: start;
@@ -687,9 +688,6 @@ h2 {
   }
   .nav-cta {
     margin-top: 0.85rem;
-    width: 100%;
-  }
-  .mobile-full-width {
     width: 100%;
   }
   .flyer-frame {

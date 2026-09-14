@@ -25,7 +25,7 @@ const mapEmbedUrl = 'https://www.google.com/maps?q=51.4097175,-3.4842953&z=16&ou
         <div class="venue-details h-100">
           <!-- <p class="eyebrow eyebrow-dark">Community Centre</p> -->
           <h2>{name}</h2>
-          <div class="venue-name mt-4">
+          <div class="venue-name mt-3">
             <div>
               <h3>Community Centre</h3>
               {address.map((line) => <p>{line}</p>)}
@@ -35,8 +35,8 @@ const mapEmbedUrl = 'https://www.google.com/maps?q=51.4097175,-3.4842953&z=16&ou
             <strong>{day}</strong>
             {times.map((time) => <span>{time}</span>)}
           </div>
-          <a class="btn btn-navy mobile-full-width mt-4" href={mapsUrl} target="_blank" rel="noopener">
-            Get directions <span aria-hidden="true">↗</span>
+          <a class="btn btn-navy w-100 w-lg-auto mt-4" href={mapsUrl} target="_blank" rel="noopener">
+            Get directions
           </a>
         </div>
       </div>
