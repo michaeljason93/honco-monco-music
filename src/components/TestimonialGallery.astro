@@ -4,12 +4,12 @@ import testimonials from '../data/testimonials.json';
 <section class="testimonial-section" data-testimonial-gallery data-testimonials={JSON.stringify(testimonials)}>
   <div class="container text-center">
     <p class="eyebrow eyebrow-dark">[Testimonial Text]</p>
-    <div class="testimonial-card">
-      <blockquote data-testimonial-quote>Loading...</blockquote>
-      <cite data-testimonial-author></cite>
-    </div>
-    <div class="testimonial-controls d-flex align-items-center justify-content-between w-100 mt-4">
+    <div class="testimonial-controls d-flex align-items-center justify-content-center gap-3 w-100">
       <button class="testimonial-button" type="button" data-testimonial-previous aria-label="Previous testimonial">←</button>
+      <div class="testimonial-card flex-grow-1">
+        <blockquote data-testimonial-quote>Loading...</blockquote>
+        <cite data-testimonial-author></cite>
+      </div>
       <button class="testimonial-button" type="button" data-testimonial-next aria-label="Next testimonial">→</button>
     </div>
   </div>
