@@ -3,14 +3,13 @@ import testimonials from '../data/testimonials.json';
 ---
 <section class="testimonial-section" data-testimonial-gallery data-testimonials={JSON.stringify(testimonials)}>
   <div class="container text-center">
-    <p class="eyebrow eyebrow-dark">Kind words</p>
+    <p class="eyebrow eyebrow-dark">[Testimonial Text]</p>
     <div class="testimonial-card">
-      <blockquote data-testimonial-quote>Loading a little kindness...</blockquote>
+      <blockquote data-testimonial-quote>Loading...</blockquote>
       <cite data-testimonial-author></cite>
     </div>
-    <div class="testimonial-controls">
+    <div class="testimonial-controls d-flex align-items-center justify-content-between w-100 mt-4">
       <button class="testimonial-button" type="button" data-testimonial-previous aria-label="Previous testimonial">←</button>
-      <span class="testimonial-count" data-testimonial-count aria-live="polite">1 / 1</span>
       <button class="testimonial-button" type="button" data-testimonial-next aria-label="Next testimonial">→</button>
     </div>
   </div>
@@ -21,14 +20,12 @@ import testimonials from '../data/testimonials.json';
     const testimonials = JSON.parse(gallery.getAttribute('data-testimonials') || '[]');
     const quote = gallery.querySelector<HTMLElement>('[data-testimonial-quote]')!;
     const author = gallery.querySelector<HTMLElement>('[data-testimonial-author]')!;
-    const count = gallery.querySelector<HTMLElement>('[data-testimonial-count]')!;
     let currentIndex = Math.floor(Math.random() * testimonials.length);
 
     const showTestimonial = () => {
       const testimonial = testimonials[currentIndex];
       quote.textContent = `“${testimonial.quote}”`;
       author.textContent = `— ${testimonial.author}`;
-      count.textContent = `${currentIndex + 1} / ${testimonials.length}`;
     };
 
     const move = (step: number) => {
