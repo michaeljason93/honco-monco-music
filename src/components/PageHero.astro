@@ -1,0 +1,17 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  theme?: 'blue' | 'peach' | 'coral';
+}
+
+const { eyebrow, title, intro, theme = 'peach' } = Astro.props;
+---
+<section class:list={['page-hero', `page-hero-${theme}`]}>
+  <div class="container">
+    <p class="eyebrow eyebrow-dark">{eyebrow}</p>
+    <h1 set:html={title}></h1>
+    <p class="page-intro">{intro}</p>
+  </div>
+</section>

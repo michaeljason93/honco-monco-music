@@ -1,0 +1,56 @@
+---
+import Layout from '../components/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import InfoCards from '../components/InfoCards.astro';
+import TeacherSection from '../components/TeacherSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import TestimonialGallery from '../components/TestimonialGallery.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout title="Honco Monco Music | Sing, move, play" description="Honco Monco Music: joyful, inclusive music classes for children aged 0-6 and their grown-ups.">
+  <Navigation />
+  <main id="top">
+    <section class="hero-section">
+      <div class="container hero-content">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <p class="eyebrow">Croeso to Honco Monco Music</p>
+            <h1>Sing, move,<br /><span>play &amp; grow.</span></h1>
+            <p class="hero-lede">A fun, inclusive music class for children aged 0-6 and their grown-ups.</p>
+            <div class="d-flex flex-wrap gap-3 hero-actions">
+              <a class="btn btn-yellow btn-lg" href="/book-a-class">Book your taster session <span aria-hidden="true">→</span></a>
+              <a class="text-link" href="#classes">See class details <span aria-hidden="true">↓</span></a>
+            </div>
+            <div class="hero-note"><span class="note-dot"></span> Mondays in Llantwit Major</div>
+          </div>
+          <div class="col-lg-5">
+            <div class="flyer-frame">
+              <div class="sticker sticker-one">♪</div><div class="sticker sticker-two">★</div>
+              <img src="/images/honco-monco-flyer.jpeg" class="img-fluid" alt="Honco Monco Music class flyer" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="music-line music-line-top" aria-hidden="true">♫　♪　♩　♫　♪</div>
+    </section>
+
+    <section id="classes" class="details-section">
+      <div class="container">
+        <div class="section-heading d-flex flex-wrap justify-content-between align-items-end gap-3">
+          <div><p class="eyebrow eyebrow-dark">Come make some noise</p><h2>Your little one’s<br /><em>happy place.</em></h2></div>
+          <p class="heading-copy">A gentle, joyful space to connect, build confidence and make memories together.</p>
+        </div>
+        <InfoCards />
+        <div class="schedule-panel row align-items-center g-4 mt-5">
+          <div class="col-lg-4"><p class="eyebrow eyebrow-dark mb-2">Next up</p><h3>Mondays from<br />5 October</h3></div>
+          <div class="col-lg-4 schedule-detail"><strong>9:15 - 10:00am</strong><strong>10:15 - 11:00am</strong><span>CF61 Centre, Llantwit Major</span></div>
+          <div class="col-lg-4 text-lg-end"><a class="btn btn-navy" href="/contact">Ask about a class <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </section>
+    <TeacherSection />
+    <TestimonialGallery />
+    <ContactSection />
+  </main>
+  <Footer />
+</Layout>
