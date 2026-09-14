@@ -1,0 +1,50 @@
+---
+interface Props {
+  name?: string;
+  town?: string;
+  address?: string[];
+  day?: string;
+  times?: string[];
+}
+
+const {
+  name = 'CF61 Centre',
+  town = 'Llantwit Major',
+  address = ['Station Rd', 'Llantwit Major', 'CF61 1ST'],
+  day = 'Mondays',
+  times = ['9:15 - 10:00am', '10:15 - 11:00am']
+} = Astro.props;
+
+const mapsUrl = 'https://www.google.com/maps/place/CF61+Centre/@51.4097175,-3.4842953,694m/data=!3m2!1e3!4b1!4m6!3m5!1s0x486e0ccd406301bb:0x8b9ed50cce52bde6!8m2!3d51.4097175!4d-3.4842953!16s%2Fg%2F1tfjvq0_?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D';
+const mapEmbedUrl = 'https://www.google.com/maps?q=51.4097175,-3.4842953&z=16&output=embed';
+---
+<section class="venue-section">
+  <div class="container">
+    <div class="row align-items-stretch g-4">
+      <div class="col-lg-5">
+        <div class="venue-details h-100">
+          <!-- <p class="eyebrow eyebrow-dark">Community Centre</p> -->
+          <h2>{name}</h2>
+          <div class="venue-name mt-4">
+            <div>
+              <h3>Community Centre</h3>
+              {address.map((line) => <p>{line}</p>)}
+            </div>
+          </div>
+          <div class="venue-schedule">
+            <strong>{day}</strong>
+            {times.map((time) => <span>{time}</span>)}
+          </div>
+          <a class="btn btn-navy mobile-full-width mt-4" href={mapsUrl} target="_blank" rel="noopener">
+            Get directions <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="venue-map">
+          <iframe src={mapEmbedUrl} title={`Map showing ${name}, ${town}`} loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
