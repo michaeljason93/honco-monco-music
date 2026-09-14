@@ -1,20 +1,19 @@
 ---
 import Layout from '../components/Layout.astro';
 import Navigation from '../components/Navigation.astro';
-import PageHero from '../components/PageHero.astro';
 import TestimonialGallery from '../components/TestimonialGallery.astro';
 import Footer from '../components/Footer.astro';
 ---
 <Layout title="Get in Touch | Honco Monco Music" description="Contact Honco Monco Music.">
   <Navigation current="contact" />
   <main>
-    <PageHero theme="coral" eyebrow="Hello there" title={'Let’s keep<br />in <span>touch.</span>'} intro="Do you have any questions about classes, availability or anything else? Please complete the form below and we will be in touch with you soon." />
     <section class="page-content-section">
       <div class="container">
         <div class="row g-5">
           <div class="col-lg-6">
-            <p class="eyebrow eyebrow-dark">Send a message</p>
-            <h2>We’d love to<br /><em>hear from you.</em></h2>
+            <!-- <p class="eyebrow eyebrow-dark">Let's get in touch</p> -->
+            <h2>Let's get in touch</h2>
+            <p class="page-intro">Do you have any questions about classes, availability or anything else? Please complete the form below and we will be in touch with you soon.</p>
             <form class="contact-form mt-4">
               <label for="name">Your name</label><input id="name" type="text" placeholder="Your name" />
               <label for="email">Email address</label><input id="email" type="email" placeholder="you@example.com" />
@@ -23,7 +22,14 @@ import Footer from '../components/Footer.astro';
             </form>
           </div>
           <div class="col-lg-5 offset-lg-1">
-            <div class="side-note"><p class="eyebrow eyebrow-dark">Prefer a quick hello?</p><h3>Book a class</h3><p>Find upcoming sessions and reserve a taster through our booking page.</p><a class="btn btn-yellow" href="/book-a-class">Book a class <span aria-hidden="true">↗</span></a><hr /><h3>Contact directly</h3><a class="contact-email contact-email-small" href="mailto:honcomoncomusic@gmail.com">honcomoncomusic@gmail.com</a><a class="phone" href="tel:07835824311">07835 824 311</a></div>
+            <div class="side-note">
+                <p class="eyebrow eyebrow-dark">Prefer a quick hello?</p>
+                <h3>Book a class</h3>
+                <p>Find upcoming sessions and reserve a taster through our booking page.</p>
+                <a class="btn btn-navy" href="/book-a-class">Book a class <span aria-hidden="true">↗</span></a><hr />
+                <h3>Contact directly</h3>
+                <a class="contact-email contact-email-small" href="mailto:honcomoncomusic@gmail.com">honcomoncomusic@gmail.com</a><a class="phone" href="tel:07835824311">07835 824 311</a>
+            </div>
             <div class="photo-placeholder photo-placeholder-peach mt-4">Photo placeholder</div>
           </div>
         </div>

@@ -1,0 +1,17 @@
+{
+  "name": "Honco Monco Music",
+  "short_name": "Honco Monco",
+  "description": "Fun, inclusive music classes for children aged 0-6 and their grown-ups.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fff8ef",
+  "theme_color": "#f48a91",
+  "icons": [
+    {
+      "src": "/images/favicon_rhian.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
