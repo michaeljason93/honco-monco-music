@@ -104,7 +104,7 @@ body {
   display: block;
   line-height: 0;
   margin: 0 auto;
-  max-width:60%
+  max-width:50%
 }
 .poster-artwork {
   display: block;
@@ -532,6 +532,14 @@ h2 {
   justify-self: start;
   margin-top: 0.8rem;
 }
+
+@media (max-width: 1200px) {
+  .poster-artwork-link {
+    max-width:100%;
+    padding: 0 10px;
+  }
+}
+
 @media (max-width: 991.98px) {
   .row {
     --bs-gutter-x: 0;
@@ -544,6 +552,10 @@ h2 {
   .site-nav .nav-tabs .nav-link {
     padding: 0.55rem 0.9rem !important;
     text-align: center;
+  }
+  .poster-artwork-link {
+    max-width:100%;
+    padding: 0 10px;
   }
 }
 @media (max-width: 575.98px) {
