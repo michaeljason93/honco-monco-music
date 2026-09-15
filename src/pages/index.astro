@@ -1,30 +1,36 @@
 ---
 import Layout from '../components/Layout.astro';
 import Navigation from '../components/Navigation.astro';
+import PosterHero from '../components/PosterHero.astro';
+import ThreePanelCards from '../components/ThreePanelCards.astro';
 import TeacherSection from '../components/TeacherSection.astro';
 import Venue from '../components/Venue.astro';
 import ContactSection from '../components/ContactSection.astro';
 import TestimonialGallery from '../components/TestimonialGallery.astro';
 import Footer from '../components/Footer.astro';
+import Divider from '../components/Divider.astro';
+
 ---
 <Layout title="Honco Monco Music | Sing, move, play" description="Honco Monco Music: joyful, inclusive music classes for children aged 0-6 and their grown-ups.">
-  <Navigation />
+  <Navigation current="home" />
   <main id="top">
-    <section class="hero-section">
-      <div class="container hero-content">
-        <div class="row align-items-center g-5 text-center">
-          <div class="col-12">
-            <!-- <p class="eyebrow">Croeso i Honco Monco Music</p> -->
-            <h1>Croeso i <br/><span>Honco Monco Music</span></h1>
-            <p class="hero-lede mx-auto">A fun, inclusive music class for children aged 0-6 and their grown-ups.</p>
-            <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 hero-actions">
-              <a class="btn btn-yellow btn-lg w-100 w-lg-auto" href="/book-a-class">Book your taster session</a>
+    <PosterHero />
+    <Divider title="fun, inclusive music classes for 0-6 year olds and their grown ups" theme="purple" />
+    <section class="py-5 background-coral">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-7">
+            <!-- <p class="eyebrow eyebrow-dark">The story so far</p> -->
+            <h2 class="font-navy">Sing, play and learn <em class="font-navy-soft">together</em></h2>
+            <div class="placeholder-copy">
+              <p class="about-copy">Classes are skillfully led by professional musician and experienced facilitator, Rhian, who brings a warm, attentive and caring approach to every session. Rhian allows each class to flow naturally as she responds to the children and grown-ups in the room, creating an environment where everyone feels included and encouraged.</p>
             </div>
+            <a class="btn btn-yellow w-100 w-lg-auto mt-4" href="/about">Find out more</a>
           </div>
         </div>
       </div>
     </section>
- 
+   
     <TeacherSection />
     <Venue />
     <TestimonialGallery />

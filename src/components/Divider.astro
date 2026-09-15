@@ -1,0 +1,12 @@
+---
+interface Props {
+  title: string;
+  theme?: 'blue' | 'peach' | 'coral' | 'purple';
+}
+const { title, theme = 'blue' } = Astro.props as Props;
+---
+<section class={`background-${theme} py-3`}>
+    <div class="container mx-auto text-center">
+    <h1 class="text-uppercase" set:html={title}></h1>
+  </div>
+</section>

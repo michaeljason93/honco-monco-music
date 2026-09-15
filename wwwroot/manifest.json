@@ -5,8 +5,8 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#fff8ef",
-  "theme_color": "#f48a91",
+  "background_color": "#fff0b7",
+  "theme_color": "#ffaf93",
   "icons": [
     {
       "src": "/images/favicon_rhian.ico",
