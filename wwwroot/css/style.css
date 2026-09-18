@@ -1,142 +1,126 @@
+/* ==========================================================================
+   Honco Monco Music
+   --------------------------------------------------------------------------
+   Bootstrap 5.3 does the heavy lifting. This file only holds:
+     1. Fonts
+     2. Brand tokens + Bootstrap theme overrides
+     3. Brand utilities that Bootstrap has no equivalent for
+     4. The handful of genuinely bespoke components
+   If a rule can be expressed with a Bootstrap class in the markup, it should be.
+   ========================================================================== */
+
+/* 1. Fonts ================================================================ */
+
 @font-face {
   font-family: "LazyDog";
   src: url("/font/Lazydog.otf") format("opentype");
   font-display: swap;
-  font-style: normal;
   font-weight: 400 700;
 }
 @font-face {
   font-family: "More Sugar";
   src: url("/font/more-sugar.regular.ttf") format("truetype");
   font-display: swap;
-  font-style: normal;
-  font-weight: 400;
 }
 @font-face {
   font-family: "TT Norms";
   src: url("/font/TTNorms-Medium.otf") format("opentype");
   font-display: swap;
-  font-style: normal;
-  font-weight: 400;
 }
+
+/* 2. Theme ================================================================ */
+
 :root {
-  --navy: #141e6b;
-  --navy-soft: #8295d1;
-  --peach: #ffaf93;
-  --coral: #ffaf93;
-  --blue: #c4e5ee;
-  --yellow: #fff0b7;
-  --cream: #fff0b7;
+  /* Brand palette - see wwwroot/images/colour palette.png */
+  --navy: #141e6b; /* navy blue    */
+  --blue: #c4e5ee; /* calm blue    */
+  --navy-soft: #8295d1; /* periwinkle   */
+  --purple: #b7a9d6; /* calm purple  */
+  --orange: #f8b662; /* calm orange  */
+  --coral: #ffaf93; /* pale coral   */
+  --cream: #fff0b7; /* pale yellow  */
+  --pink: #f48baa; /* pale pink    */
+  --green: #b8dea1; /* pale green   */
+  --guitar-orange: #ff9c00; /* guitar orange */
+
+  /* Derived, not from the palette: darkened pale yellow for inactive nav tabs */
   --cream-inactive: #eadbae;
-  --purple: #b7a9d6;
-  --orange: #f8b662;
-  --pink: #f48baa;
-  --green: #b8dea1;
-  --guitar-orange: #ff9c00;
-  --ink: #141e6b;
+
+  /* Aliases, so the "peach" / "yellow" theme names keep working */
+  --peach: var(--coral);
+  --yellow: var(--cream);
+
+  /* Type stacks */
   --font-heading: "LazyDog", sans-serif;
   --font-subheading: "Fredoka", sans-serif;
   --font-accent: "More Sugar", "Fredoka", sans-serif;
   --font-body: "TT Norms", "Fredoka", sans-serif;
+
+  /* Bootstrap theme - everything Bootstrap renders inherits from these */
+  --bs-body-bg: var(--cream);
+  --bs-body-color: var(--navy);
+  --bs-body-font-family: var(--font-body);
+  --bs-link-color-rgb: 20, 30, 107;
+  --bs-link-hover-color-rgb: 20, 30, 107;
+  --bs-border-radius-xl: 1.25rem; /* .rounded-4 */
 }
 
-* {
-  box-sizing: border-box;
-}
 html {
   scroll-behavior: smooth;
 }
-body {
-  margin: 0;
-  color: var(--ink);
-  background: var(--cream);
-  font-family: var(--font-body);
-  font-weight: 400;
+
+/* 3. Brand utilities ====================================================== */
+
+/* Colours - named to match the Bootstrap .text-* / .bg-* convention. */
+.text-navy { color: var(--navy) !important; }
+.text-navy-soft { color: var(--navy-soft) !important; }
+.text-coral,
+.text-peach { color: var(--coral) !important; }
+.text-blue { color: var(--blue) !important; }
+.text-cream,
+.text-yellow { color: var(--cream) !important; }
+.text-purple { color: var(--purple) !important; }
+.text-pink { color: var(--pink) !important; }
+.text-green { color: var(--green) !important; }
+
+.bg-navy { background-color: var(--navy) !important; }
+.bg-coral,
+.bg-peach { background-color: var(--coral) !important; }
+.bg-blue { background-color: var(--blue) !important; }
+.bg-cream,
+.bg-yellow { background-color: var(--cream) !important; }
+.bg-purple { background-color: var(--purple) !important; }
+.bg-pink { background-color: var(--pink) !important; }
+.bg-green { background-color: var(--green) !important; }
+
+/* Pairs with Bootstrap's .border / .border-2 utilities. */
+.border-navy { --bs-border-color: var(--navy); }
+
+/* Type stacks */
+.font-heading { font-family: var(--font-heading); font-weight: 700; }
+.font-accent { font-family: var(--font-accent); font-weight: 600; letter-spacing: 0.02em; }
+.font-body { font-family: var(--font-body); font-weight: 400; }
+
+/* Bootstrap ships .w-100 but no responsive width utilities. */
+@media (min-width: 992px) {
+  .w-lg-auto { width: auto !important; }
 }
-.site-nav {
-  background: var(--purple);
-  padding: 1.1rem 0;
+
+/* Standard vertical rhythm for a full-width band. */
+.section { padding-block: 6rem; }
+
+/* Readable measure for body copy: pair with .fs-5 / .mt-4 in the markup. */
+.prose {
+  line-height: 1.45;
+  max-width: 38rem;
 }
-.nav-link {
-  background: var(--cream-inactive);
-  border-radius: 999px 999px 0 0;
-  color: var(--navy);
-  font-family: var(--font-accent);
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 0.55rem 1.2rem;
+/* Keeps spacing below the copy block down to the next element's own margin. */
+.prose > :last-child {
+  margin-bottom: 0;
 }
-.nav-link:hover {
-  color: var(--guitar-orange);
-}
-.nav-link.active {
-  background: var(--yellow) !important;
-  color: var(--navy);
-  position: relative;
-  z-index: 1;
-}
-.btn {
-  border: 0;
-  border-radius: 999px;
-  padding: 0.72rem 1.35rem;
-  font-weight: 600;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 0 rgba(23, 31, 104, 0.16);
-}
-.btn-yellow {
-  background: var(--yellow);
-  color: var(--navy);
-}
-.btn-navy {
-  background: var(--navy);
-  color: white;
-}
-.poster-hero {
-  background: var(--yellow);
-  overflow: hidden;
-}
-.poster-artwork-link {
-  display: block;
-  line-height: 0;
-  margin: 0 auto;
-  max-width:50%
-}
-.poster-artwork {
-  display: block;
-  height: auto;
-  width: 100%;
-}
-.poster-action {
-  background: var(--yellow);
-  padding: 1.25rem 1rem 2rem;
-}
-.poster-cta {
-  background: var(--guitar-orange);
-  color: var(--navy);
-  font-family: var(--font-accent);
-}
-.poster-cta:hover,
-.poster-cta:focus-visible {
-  background: var(--orange);
-  color: var(--navy);
-}
-.eyebrow {
-  color: var(--coral);
-  font-family: var(--font-accent);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-.eyebrow-dark {
-  color: var(--navy);
-}
+
+/* 4. Typography =========================================================== */
+
 h1,
 h2 {
   font-family: var(--font-heading);
@@ -149,271 +133,112 @@ h6 {
   font-family: var(--font-subheading);
   font-weight: 600;
 }
-
-/* Font utility classes - apply these to components/elements */
-.u-font-heading { font-family: var(--font-heading); font-weight: 700; }
-.u-font-subheading { font-family: var(--font-subheading); font-weight: 600; }
-.u-font-accent { font-family: var(--font-accent); font-weight: 600; letter-spacing: 0.02em; }
-.u-font-body { font-family: var(--font-body); font-weight: 400; }
-
-h1 span,
-h2 em {
-  color: var(--coral);
-  font-style: normal;
-}
 h2 {
   font-size: clamp(2.8rem, 6vw, 5rem);
   letter-spacing: -0.03em;
   line-height: 0.92;
   margin: 0;
 }
-.venue-section {
-  background: var(--blue);
-  padding: 3rem 0;
+/* Accent word inside a heading. Wrap it in <em> (or <span>) for the coral
+   default, or add a .text-* utility on that tag to choose another palette
+   colour — the utility's !important wins over this rule. */
+h1 em,
+h1 span,
+h2 em,
+h2 span {
+  color: var(--coral);
+  font-style: normal;
 }
-.venue-details {
+
+/* Small uppercase kicker above a heading. Colour comes from a .text-* class. */
+.eyebrow {
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* 5. Buttons ============================================================== */
+
+/* One button style across the site: guitar orange fill, navy label. */
+.btn {
+  --bs-btn-bg: var(--guitar-orange);
+  --bs-btn-hover-bg: var(--orange);
+  --bs-btn-active-bg: var(--orange);
+  --bs-btn-color: var(--navy);
+  --bs-btn-hover-color: var(--navy);
+  --bs-btn-active-color: var(--navy);
+  --bs-btn-border-width: 0;
+  --bs-btn-border-radius: var(--bs-border-radius-pill);
+  --bs-btn-font-weight: 600;
+  --bs-btn-padding-x: 1.35rem;
+  --bs-btn-padding-y: 0.72rem;
+  font-family: var(--font-accent);
+  text-transform: uppercase;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.btn:hover {
+  box-shadow: 0 7px 0 rgba(20, 30, 107, 0.16);
+  transform: translateY(-2px);
+}
+
+/* 6. Navigation =========================================================== */
+
+.site-nav .nav-link {
+  --bs-nav-link-color: var(--navy);
+  --bs-nav-link-hover-color: var(--guitar-orange);
+  --bs-nav-link-padding-x: 1.2rem;
+  --bs-nav-link-padding-y: 0.55rem;
+  background: var(--cream-inactive);
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.site-nav .nav-link.active {
   background: var(--cream);
-  border-radius: 1.25rem;
-  padding: 2rem;
+  color: var(--navy);
+  position: relative;
+  z-index: 1;
 }
-.venue-name {
-  align-items: center;
-  display: flex;
-  gap: 1rem;
+
+/* 7. Components =========================================================== */
+
+/* Poster hero */
+.poster-artwork {
+  line-height: 0;
+  max-width: 50%;
 }
-.venue-name h3 {
-  font-size: 1.6rem;
-  margin: 0;
-}
-.venue-name p {
-  margin: 0.25rem 0 0;
-}
+
+/* Venue */
 .venue-schedule {
-  border-left: 3px solid var(--coral);
-  display: grid;
-  gap: 0.25rem;
-  margin-top: 1rem;
-  padding-left: 1rem;
+  border-color: var(--coral) !important;
 }
-.venue-schedule strong {
-  font-size: 1.1rem;
-}
-.venue-map {
-  border: 0.6rem solid var(--cream);
-  border-radius: 1.25rem;
-  height: 100%;
-  min-height: 25rem;
-  overflow: hidden;
-}
+/* The card's own padding frames the map now, so it needs no border of its own. */
+.venue-map,
 .venue-map iframe {
-  border: 0;
-  display: block;
-  height: 100%;
   min-height: 25rem;
-  width: 100%;
-}
-.about-section {
-  background: var(--navy);
-  color: white;
-  padding: 6.5rem 0;
-}
-.about-section .eyebrow {
-  color: var(--yellow);
-}
-.about-section h2 span {
-  color: var(--blue);
-}
-.about-copy {
-  font-size: 1.35rem;
-  line-height: 1.4;
-  max-width: 31rem;
-}
-.mini-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 1.8rem;
-}
-.mini-list span {
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 999px;
-  font-size: 0.9rem;
-  padding: 0.45rem 0.9rem;
-}
-.contact-section {
-  background: var(--coral);
-  padding: 6rem 0;
-}
-.contact-section h2 {
-  margin-bottom: 1.4rem;
-}
-.contact-section > .container > p:not(.eyebrow):not(.phone) {
-  font-size: 1.1rem;
-}
-.contact-email {
-  color: var(--navy);
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.25rem;
-}
-.phone {
-  font-size: 1.1rem;
-  margin-top: 1rem;
-}
-.phone a {
-  color: var(--navy);
-  text-decoration: none;
-}
-.site-footer {
-  background: var(--navy);
-  color: var(--blue);
-  font-size: 0.85rem;
-  padding: 1.3rem 0;
-}
-.footer-socials a {
-  color: var(--blue);
-  text-decoration: none;
-}
-.footer-socials a:hover,
-.footer-socials a:focus-visible {
-  color: var(--yellow);
-}
-.page-hero {
-  padding: 6.5rem 0 6rem;
 }
 
-.font-blue{
-  color: var(--blue);
-}
-.font-coral{
-  color: var(--coral);
-}
-.font-yellow{
-  color: var(--yellow);
-}
-.font-cream{
-  color: var(--cream);
-}
-.font-purple{
-  color: var(--purple);
-}
-.font-peach{
-  color: var(--peach);
-}
-.font-navy{
-  color: var(--navy);
-}
-.font-navy-soft{
-  color: var(--navy-soft);
+/* Booking iframe */
+.booking-frame {
+  height: 800px;
 }
 
-.background-blue {
-  background: var(--blue);
-}
-.background-peach {
-  background: var(--peach);
-}
-.background-coral {
-  background: var(--coral);
-}
-.background-purple {
-  background: var(--purple);
-}
-.page-hero h1 span {
-  color: var(--coral);
-}
-.page-hero-blue h1 span,
-.page-hero-coral h1 span {
-  color: var(--navy);
-}
-.page-intro {
-  font-size: 1.3rem;
-  line-height: 1.4;
-  margin: 1.6rem 0 0;
-  max-width: 38rem;
-}
-.page-content-section {
-  background: var(--cream);
-  padding: 6rem 0;
-}
+/* Photos */
 .photo-placeholder {
-  align-items: center;
   border: 2px dashed currentColor;
-  border-radius: 1.25rem;
-  display: flex;
-  font-size: 1rem;
-  font-weight: 600;
-  justify-content: center;
   min-height: 22rem;
-  padding: 2rem;
-  text-align: center;
 }
-.teacher-photo {
-  display: block;
-  height: 100%;
+.section-photo {
   max-height: 28rem;
-  object-fit: cover;
-  width: 100%;
 }
-.photo-placeholder-blue {
-  background: var(--blue);
-  color: var(--navy);
-}
-.photo-placeholder-peach {
-  background: var(--peach);
-  color: var(--navy);
-}
-.booking-embed {
-  background: white;
-  border-radius: 1.25rem;
-  overflow: hidden;
-}
-.side-note {
-  background: var(--yellow);
-  border-radius: 1.25rem;
-  padding: 2rem;
-}
-.side-note h3 {
-  font-size: 2rem;
-  line-height: 1;
-}
-.side-note p {
-  line-height: 1.45;
-}
-.side-note hr {
-  border-color: rgba(23, 31, 104, 0.35);
-  margin: 1.6rem 0;
-}
-.contact-email-small {
-  display: block;
-  font-size: 1.05rem;
-  word-break: break-word;
-}
-.side-note .phone {
-  color: var(--navy);
-  display: block;
-  font-size: 1rem;
-  margin-top: 0.7rem;
-  text-decoration: none;
-}
-.placeholder-copy {
-  font-size: 1.15rem;
-  line-height: 1.55;
-  margin-top: 1.8rem;
-  max-width: 38rem;
-}
-.quote-card {
-  background: var(--blue);
-  border-radius: 1.25rem;
-  margin-top: 5rem;
-  padding: 2.5rem;
-  text-align: center;
-}
-.quote-card > span {
-  color: var(--coral);
-  display: block;
+
+/* Pull quote */
+.quote-mark {
   font-family: Georgia, serif;
   font-size: 5rem;
   height: 2.6rem;
@@ -421,51 +246,71 @@ h2 {
 }
 .quote-card blockquote {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
-  margin: 1rem auto 0.7rem;
   max-width: 45rem;
 }
 
-.quote-card cite,
-.testimonial-section cite {
-  font-size: 0.9rem;
-  font-style: normal;
+/* Testimonial carousel
+   Bootstrap's carousel provides swipe, keyboard, indicators and the fade; the
+   speech bubbles are ours. Slides keep Bootstrap's own height, so the track is
+   only ever as tall as the current quote - no dead space under the short ones.
+   Each bubble hangs from its tail at the top, so a longer quote grows
+   downwards and everything above it - heading, controls, animal - stays put. */
+.testimonial-carousel .carousel-item {
+  /* Room above the bubble for the tail and the animal sitting on top of it.
+     .carousel-inner clips overflow, so this has to cover both. */
+  padding-top: 4rem;
 }
-.testimonial-section {
-  background: var(--yellow);
-  padding: 3rem 0;
+/* Bootstrap holds the outgoing slide at full opacity for the whole transition
+   (transition: opacity 0s .6s) and relies on the incoming one covering it.
+   These bubbles differ in height, so a taller outgoing quote shows around the
+   incoming one. Drop the delay: it leaves at once and the incoming bubble
+   fades up against the band on its own. */
+.testimonial-carousel.carousel-fade .active.carousel-item-start,
+.testimonial-carousel.carousel-fade .active.carousel-item-end {
+  transition: none;
 }
-.testimonial-card {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  min-height: 8rem;
-  justify-content: center;
+
+/* Speech bubble. The tail is a rotated square inheriting the bubble's
+   background and border custom properties, so changing the .bg-* or .border-*
+   utilities on the bubble recolours the tail to match. It points up out of the
+   top edge: after a 45deg turn the square's upper corner is its original
+   top-left one, so only those two edges are drawn. The square's white fill
+   covers the bubble's own top border to open the tail into it. */
+.speech-bubble {
+  max-width: 48rem;
 }
-.testimonial-section blockquote {
-  font-family: var(--font-body);
+.speech-bubble::after {
+  background: inherit;
+  border-left: var(--bs-border-width, 2px) solid var(--bs-border-color, var(--navy));
+  border-top: var(--bs-border-width, 2px) solid var(--bs-border-color, var(--navy));
+  content: "";
+  height: 1.4rem;
+  left: var(--tail-x, 50%);
+  position: absolute;
+  top: -0.7rem;
+  transform: translateX(-50%) rotate(45deg);
+  width: 1.4rem;
+}
+/* The animal sits above the tail, sharing its --tail-x so the two always line
+   up and the bubble reads as belonging to it. Anchoring both to the bubble's
+   top edge keeps them still while a long quote grows downwards. */
+.speech-bubble-animal {
+  bottom: 100%;
+  font-size: 2.25rem;
+  left: var(--tail-x, 50%);
+  line-height: 1;
+  position: absolute;
+  transform: translate(-50%, -1.15rem);
+}
+.testimonial-quote {
   font-size: clamp(1.6rem, 3vw, 2.5rem);
   line-height: 1.1;
-  margin: 0.6rem auto 1rem;
-  max-width: 48rem;
 }
-.testimonial-section cite {
-  color: var(--navy);
-}
-.testimonial-controls {
-  max-width: 48rem;
-}
+
+/* Round navy arrows carrying Bootstrap's own chevron icons. */
 .testimonial-button {
-  align-items: center;
   background: var(--navy);
-  border: 0;
-  border-radius: 50%;
-  color: white;
-  display: grid;
-  font-size: 1.3rem;
   height: 2.7rem;
-  justify-content: center;
-  line-height: 1;
   transition:
     transform 0.2s ease,
     background 0.2s ease;
@@ -476,97 +321,76 @@ h2 {
   background: var(--navy-soft);
   transform: translateY(-2px);
 }
-
-/* Divider components */
-.divider { display:block; width:100%; overflow:hidden; line-height:0; }
-.divider svg { display:block; width:100%; height:var(--divider-height,56px); }
-.divider.squiggle path { vector-effect: non-scaling-stroke; }
-.divider.staff line { stroke-linecap: round; }
-.divider.staff ellipse { opacity: 0.95; }
-.divider.invert { transform: rotate(180deg); }
-
-
-.contact-form {
-  display: grid;
-  gap: 0.55rem;
-  max-width: 36rem;
+.testimonial-button .carousel-control-prev-icon,
+.testimonial-button .carousel-control-next-icon {
+  height: 1.25rem;
+  width: 1.25rem;
 }
-/* Three panel cards adjustments */
-.three-cards .card {
-  border: 2px solid rgba(0,0,0,0.6);
-  border-radius: 1.25rem;
-  background: white;
+
+/* Position dots in place of Bootstrap's overlaid white bars. Bootstrap's
+   transparent top/bottom borders stay, so the tap target is taller than the dot. */
+.testimonial-carousel .carousel-indicators [data-bs-target] {
+  background-color: var(--navy);
+  border-radius: 50%;
+  height: 0.65rem;
+  width: 0.65rem;
 }
-.three-cards .card .card-body { padding: 2.25rem; }
-.three-cards .card-title { font-size: 1.25rem; }
-.contact-form label {
-  font-size: 0.9rem;
+
+/* Email address shown as a link. Add .fs-6 for the compact variant. */
+.contact-email {
+  font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: 600;
-  margin-top: 0.55rem;
-}
-.contact-form input,
-.contact-form textarea {
-  background: white;
-  border: 2px solid rgba(23, 31, 104, 0.22);
-  border-radius: 0.6rem;
-  color: var(--navy);
-  font: inherit;
-  padding: 0.8rem 1rem;
-  width: 100%;
-}
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: var(--navy);
-  outline: 3px solid rgba(191, 228, 238, 0.8);
-}
-.contact-form textarea {
-  resize: vertical;
-}
-.contact-form .hidden {
-  display: none;
-}
-.contact-form .h-captcha {
-  width: 100%;
-}
-.contact-form button {
-  justify-self: start;
-  margin-top: 0.8rem;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25rem;
 }
 
-@media (max-width: 1200px) {
-  .poster-artwork-link {
-    max-width:100%;
-    padding: 0 10px;
+/* Footer */
+.footer-socials a:hover,
+.footer-socials a:focus-visible {
+  color: var(--cream) !important;
+}
+
+/* Forms */
+.form-control {
+  /* Bootstrap defaults this to --bs-body-bg, which is cream here. */
+  background-color: #fff;
+  border: 2px solid rgba(20, 30, 107, 0.22);
+  border-radius: 0.6rem;
+  padding: 0.8rem 1rem;
+}
+.form-control:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 0.25rem rgba(196, 229, 238, 0.8);
+}
+
+/* 8. Responsive =========================================================== */
+
+@media (max-width: 1199.98px) {
+  .poster-artwork {
+    max-width: 100%;
+    padding-inline: 10px;
   }
 }
 
 @media (max-width: 991.98px) {
+  /* Columns stack below lg, so horizontal gutters only cause overflow. */
   .row {
     --bs-gutter-x: 0;
   }
   .site-nav .nav-tabs {
     align-items: end;
-    gap: 0 !important;
     justify-content: center;
   }
-  .site-nav .nav-tabs .nav-link {
-    padding: 0.55rem 0.9rem !important;
+  .site-nav .nav-link {
+    --bs-nav-link-padding-x: 0.9rem;
     text-align: center;
   }
-  .poster-artwork-link {
-    max-width:100%;
-    padding: 0 10px;
-  }
 }
+
 @media (max-width: 575.98px) {
-  .details-section,
-  .about-section,
-  .contact-section,
-  .page-content-section {
-    padding: 3rem 0;
-  }
-  .page-hero {
-    padding: 3rem 0;
+  .section {
+    padding-block: 3rem;
   }
   .page-hero h1 {
     font-size: 3.5rem;

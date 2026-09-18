@@ -2,39 +2,53 @@
 import Layout from '../components/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import PosterHero from '../components/PosterHero.astro';
-import ThreePanelCards from '../components/ThreePanelCards.astro';
-import TeacherSection from '../components/TeacherSection.astro';
-import Venue from '../components/Venue.astro';
-import ContactSection from '../components/ContactSection.astro';
-import TestimonialGallery from '../components/TestimonialGallery.astro';
-import Footer from '../components/Footer.astro';
 import Divider from '../components/Divider.astro';
-
+import ContentSection from '../components/ContentSection.astro';
+import Venue from '../components/Venue.astro';
+import TestimonialGallery from '../components/TestimonialGallery.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
 ---
 <Layout title="Honco Monco Music | Sing, move, play" description="Honco Monco Music: joyful, inclusive music classes for children aged 0-6 and their grown-ups.">
   <Navigation current="home" />
   <main id="top">
     <PosterHero />
     <Divider title="fun, inclusive music classes for 0-6 year olds and their grown ups" theme="purple" />
-    
-    <section class="py-5 background-coral">
-      <div class="container">
-        <div class="row g-5">
-          <div class="col-lg-7">
-            <!-- <p class="eyebrow eyebrow-dark">The story so far</p> -->
-            <h2 class="font-navy">Sing, play and learn <em class="font-navy-soft">together</em></h2>
-            <div class="placeholder-copy">
-              <p class="about-copy">Classes are skillfully led by professional musician and experienced facilitator, Rhian, 
-                who brings a warm, attentive and caring approach to every session. 
-                Rhian allows each class to flow naturally as she responds to the children and grown-ups in the room, creating an environment where everyone feels included and encouraged.</p>
-            </div>
-            <a class="btn btn-yellow w-100 w-lg-auto mt-4" href="/about">Find out more</a>
-          </div>
-        </div>
-      </div>
-    </section>
-   
-    <TeacherSection />
+
+    <ContentSection
+      theme="coral"
+      compact
+      title={'Sing, play and learn <em class="text-navy-soft">together</em>'}
+      cta="Find out more"
+      ctaHref="/about"
+    >
+      <p>
+        Classes are skillfully led by professional musician and experienced facilitator, Rhian,
+        who brings a warm, attentive and caring approach to every session.
+        Rhian allows each class to flow naturally as she responds to the children and grown-ups in
+        the room, creating an environment where everyone feels included and encouraged.
+      </p>
+    </ContentSection>
+
+    <ContentSection
+      theme="navy"
+      eyebrow="meet your teacher"
+      title={'Shw mae! I&rsquo;m <span class="text-blue">Rhian</span>'}
+      image="/images/Rhian_sitting.webp"
+      imageAlt="Rhian sitting"
+      mediaSide="left"
+      cta="Meet Rhian"
+      ctaHref="/about"
+    >
+      <p>
+        a guitarist, singer, songwriter, performer and music educator with a lifelong love of music.
+        I grew up in a musical family in South Wales and had a go at many instruments throughout my
+        childhood, but everything changed when I overheard my mum practising a twelve-bar blues on the
+        electric guitar. I begged her to teach me and I&rsquo;ve been playing ever since, obtaining a degree
+        in Professional Musicianship and Music Management at BIMM Bristol, graduating in 2014.
+      </p>
+    </ContentSection>
+
     <Venue />
     <TestimonialGallery />
     <ContactSection />

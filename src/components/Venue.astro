@@ -1,5 +1,6 @@
 ---
 interface Props {
+  eyebrow?: string;
   name?: string;
   town?: string;
   address?: string[];
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const {
+  eyebrow = 'Mondays from October 5th',
   name = 'CF61 Centre',
   town = 'Llantwit Major',
   address = ['Station Rd', 'Llantwit Major', 'CF61 1ST'],
@@ -18,31 +20,36 @@ const {
 const mapsUrl = 'https://www.google.com/maps/place/CF61+Centre/@51.4097175,-3.4842953,694m/data=!3m2!1e3!4b1!4m6!3m5!1s0x486e0ccd406301bb:0x8b9ed50cce52bde6!8m2!3d51.4097175!4d-3.4842953!16s%2Fg%2F1tfjvq0_?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D';
 const mapEmbedUrl = 'https://www.google.com/maps?q=51.4097175,-3.4842953&z=16&output=embed';
 ---
-<section class="venue-section">
+<section class="bg-purple py-5">
   <div class="container">
-    <div class="row align-items-stretch g-4">
-      <div class="col-lg-5">
-        <div class="venue-details h-100">
-          <!-- <p class="eyebrow eyebrow-dark">Community Centre</p> -->
+    {/* Details and map share one card, so they read as a single place rather
+        than two unrelated panels. */}
+    <div class="bg-blue rounded-4 p-4">
+      <div class="row align-items-stretch g-4">
+        <div class="col-lg-5">
+          <p class="eyebrow">{eyebrow}</p>
           <h2>{name}</h2>
-          <div class="venue-name mt-3">
-            <div>
-              <h3>Community Centre</h3>
-              {address.map((line) => <p>{line}</p>)}
-            </div>
+          <div class="mt-3">
+            <h3 class="fs-4 mb-0">Community Centre</h3>
+            {address.map((line) => <p class="mb-0 mt-1">{line}</p>)}
           </div>
-          <div class="venue-schedule">
-            <strong>{day}</strong>
+          <div class="venue-schedule d-grid gap-1 mt-3 ps-3 border-start border-3">
+            <strong class="fs-5">{day}</strong>
             {times.map((time) => <span>{time}</span>)}
           </div>
-          <a class="btn btn-navy w-100 w-lg-auto mt-4" href={mapsUrl} target="_blank" rel="noopener">
+          <a class="btn w-100 w-lg-auto mt-4" href={mapsUrl} target="_blank" rel="noopener">
             Get directions
           </a>
         </div>
-      </div>
-      <div class="col-lg-7">
-        <div class="venue-map">
-          <iframe src={mapEmbedUrl} title={`Map showing ${name}, ${town}`} loading="lazy"></iframe>
+        <div class="col-lg-7">
+          <div class="venue-map rounded-4 overflow-hidden h-100">
+            <iframe
+              class="d-block w-100 h-100 border-0"
+              src={mapEmbedUrl}
+              title={`Map showing ${name}, ${town}`}
+              loading="lazy"
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,64 @@
+---
+import { isDarkTheme, type PaletteTheme } from '../types';
+
+interface Props {
+  /** Band background, from the brand palette. */
+  theme?: PaletteTheme;
+  /** Small uppercase kicker above the heading. */
+  eyebrow?: string;
+  /** Heading. HTML is allowed, so the accent word can carry its own colour class. */
+  title: string;
+  /** Optional button below the copy. Both are needed for it to render. */
+  cta?: string;
+  ctaHref?: string;
+  /** Optional photo. For anything else (a placeholder, a video), use the `media` slot. */
+  image?: string;
+  imageAlt?: string;
+  /** Which side the media column sits on at lg and up. */
+  mediaSide?: 'left' | 'right';
+  /** Tighter vertical padding (3rem instead of 6rem). */
+  compact?: boolean;
+}
+
+const {
+  theme = 'cream',
+  eyebrow,
+  title,
+  cta,
+  ctaHref,
+  image,
+  imageAlt = '',
+  mediaSide = 'left',
+  compact = false
+} = Astro.props;
+
+const dark = isDarkTheme(theme);
+const hasMedia = Boolean(image) || Astro.slots.has('media');
+
+// Copy stays first in the DOM for screen readers and SEO; Bootstrap's order
+// utilities move the media column to the left visually when asked.
+const copyOrder = hasMedia && mediaSide === 'left' ? 'order-2' : undefined;
+const mediaOrder = mediaSide === 'left' ? 'order-1' : 'order-2';
+---
+<section class:list={[compact ? 'py-5' : 'section', `bg-${theme}`, { 'text-white': dark }]}>
+  <div class="container">
+    <div class:list={['row', 'g-5', { 'align-items-center': hasMedia }]}>
+      <div class:list={['col-lg-7', copyOrder]}>
+        {eyebrow && <p class:list={['eyebrow', { 'text-cream': dark }]}>{eyebrow}</p>}
+        <h2 set:html={title}></h2>
+        <div class="prose fs-5 mt-4"><slot /></div>
+        {cta && ctaHref && <a class="btn w-100 w-lg-auto mt-4" href={ctaHref}>{cta}</a>}
+      </div>
+
+      {hasMedia && (
+        <div class:list={['col-lg-5', mediaOrder]}>
+          <slot name="media">
+            <img class="section-photo d-block w-100 h-100 object-fit-cover rounded-5" src={image} alt={imageAlt} />
+          </slot>
+        </div>
+      )}
+    </div>
+
+    <slot name="after" />
+  </div>
+</section>

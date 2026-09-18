@@ -1,40 +1,103 @@
 ---
 import testimonials from '../data/testimonials.json';
+
+// One gallery per page, so a fixed id is safe. Bootstrap's controls target it.
+const id = 'testimonial-carousel';
+
+// Where each bubble's tail sits along its top edge. Cycled by index rather
+// than drawn at random, so a given testimonial always keeps the same tail and
+// no two neighbours share one. Kept clear of the rounded corners.
+const TAIL_POSITIONS = ['28%', '50%', '72%'];
+
+// A friendly face above each tail, so the bubble reads as that animal speaking.
+// Nine of them for nine testimonials, cycled by index like the tails above.
+const ANIMALS = ['🐭', '🐰', '🐱', '🐶', '🐻', '🦊', '🐼', '🐸', '🐧'];
 ---
-<section class="testimonial-section" data-testimonial-gallery data-testimonials={JSON.stringify(testimonials)}>
+<section class="bg-cream py-5">
   <div class="container text-center">
-    <p class="eyebrow eyebrow-dark">Testimonials</p>
-    <div class="testimonial-controls d-flex align-items-center justify-content-center gap-3 w-100 mx-auto">
-      <button class="testimonial-button" type="button" data-testimonial-previous aria-label="Previous testimonial">&lt;</button>
-      <div class="testimonial-card flex-grow-1">
-        <blockquote data-testimonial-quote>Loading...</blockquote>
-        <cite data-testimonial-author></cite>
+    <p class="eyebrow mb-0">kind words and</p>
+    <h2 class="display-5 fw-bold mb-3">Testimonials</h2>
+    <div id={id} class="testimonial-carousel carousel carousel-fade slide" data-testimonial-carousel>
+      <!-- Controls sit above the slides so they never move, whatever the
+           height of the quote below them. -->
+      <div class="d-flex align-items-center justify-content-center gap-3">
+        <button
+          class="testimonial-button border-0 rounded-circle d-flex align-items-center justify-content-center p-0 flex-shrink-0"
+          type="button"
+          data-bs-target={`#${id}`}
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous testimonial</span>
+        </button>
+
+        <div class="carousel-indicators position-static m-0 gap-2">
+          {testimonials.map((_, index) => (
+            <button
+              type="button"
+              data-bs-target={`#${id}`}
+              data-bs-slide-to={index}
+              class:list={[{ active: index === 0 }]}
+              aria-current={index === 0 ? 'true' : undefined}
+              aria-label={`Testimonial ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+
+        <button
+          class="testimonial-button border-0 rounded-circle d-flex align-items-center justify-content-center p-0 flex-shrink-0"
+          type="button"
+          data-bs-target={`#${id}`}
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next testimonial</span>
+        </button>
       </div>
-      <button class="testimonial-button" type="button" data-testimonial-next aria-label="Next testimonial">&gt;</button>
+
+      <p class="small d-md-none mt-2 mb-0 opacity-75">Swipe to read more</p>
+
+      <div class="carousel-inner mt-4">
+        {testimonials.map((testimonial, index) => (
+          <div class:list={['carousel-item', { active: index === 0 }]}>
+            <figure
+              class="speech-bubble position-relative bg-white border border-2 border-navy rounded-4 p-4 p-md-5 mx-auto mb-0"
+              style={`--tail-x: ${TAIL_POSITIONS[index % TAIL_POSITIONS.length]}`}
+            >
+              <blockquote class="blockquote testimonial-quote">
+                <p>&ldquo;{testimonial.quote}&rdquo;</p>
+              </blockquote>
+              <figcaption class="blockquote-footer text-navy opacity-75 mb-0 mt-1">{testimonial.author}</figcaption>
+              <span class="speech-bubble-animal" aria-hidden="true">{ANIMALS[index % ANIMALS.length]}</span>
+            </figure>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  document.querySelectorAll('[data-testimonial-gallery]').forEach((gallery) => {
-    const testimonials = JSON.parse(gallery.getAttribute('data-testimonials') || '[]');
-    const quote = gallery.querySelector<HTMLElement>('[data-testimonial-quote]')!;
-    const author = gallery.querySelector<HTMLElement>('[data-testimonial-author]')!;
-    let currentIndex = Math.floor(Math.random() * testimonials.length);
+  // Loaded globally by Layout.astro's <script src="/bootstrap.min.js">.
+  declare const bootstrap: {
+    Carousel: new (element: Element, config: { interval: number | false }) => unknown;
+  };
 
-    const showTestimonial = () => {
-      const testimonial = testimonials[currentIndex];
-      quote.textContent = `“${testimonial.quote}”`;
-      author.textContent = `— ${testimonial.author}`;
-    };
+  document.querySelectorAll<HTMLElement>('[data-testimonial-carousel]').forEach((carousel) => {
+    const slides = carousel.querySelectorAll('.carousel-item');
+    const dots = carousel.querySelectorAll('.carousel-indicators [data-bs-slide-to]');
 
-    const move = (step: number) => {
-      currentIndex = (currentIndex + step + testimonials.length) % testimonials.length;
-      showTestimonial();
-    };
+    // Open on a random testimonial so repeat visitors see more than the first one.
+    const start = Math.floor(Math.random() * slides.length);
+    slides.forEach((slide, index) => slide.classList.toggle('active', index === start));
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === start);
+      if (index === start) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
 
-    gallery.querySelector('[data-testimonial-previous]')?.addEventListener('click', () => move(-1));
-    gallery.querySelector('[data-testimonial-next]')?.addEventListener('click', () => move(1));
-    showTestimonial();
+    // Bootstrap only wires up swipe and keyboard once a carousel is instantiated,
+    // and only does that by itself for autoplaying ones - so create it here.
+    new bootstrap.Carousel(carousel, { interval: false });
   });
 </script>

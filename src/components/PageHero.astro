@@ -1,17 +1,27 @@
 ---
+import { isDarkTheme, type PaletteTheme } from '../types';
+
 interface Props {
-  eyebrow: string;
+  /** Band background. Defaults to cream so the active nav tab connects to it. */
+  theme?: PaletteTheme;
+  /** Optional small uppercase kicker above the title. */
+  eyebrow?: string;
+  /**
+   * Page title. HTML is allowed: wrap a word in <em> for the coral accent, or
+   * add a colour utility — <em class="text-navy-soft"> — to choose your own.
+   */
   title: string;
   intro: string;
-  theme?: 'blue' | 'peach' | 'coral' | 'purple';
 }
 
-const { eyebrow, title, intro, theme = 'peach' } = Astro.props;
+const { theme = 'cream', eyebrow, title, intro } = Astro.props;
+
+const dark = isDarkTheme(theme);
 ---
-<section class:list={['page-hero', `page-hero-${theme}`]}>
+<section class:list={['page-hero', 'section', `bg-${theme}`, { 'text-white': dark }, `pt-5`]}>
   <div class="container">
-    <p class="eyebrow eyebrow-dark">{eyebrow}</p>
+    {eyebrow && <p class:list={['eyebrow', { 'text-cream': dark }]}>{eyebrow}</p>}
     <h1 set:html={title}></h1>
-    <p class="page-intro">{intro}</p>
+    <p class="prose fs-5 mt-4">{intro}</p>
   </div>
 </section>

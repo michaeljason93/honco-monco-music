@@ -2,7 +2,6 @@
 interface PanelItem {
   heading?: string;
   body: string;
-  img?: string; // optional image URL
 }
 
 interface Props {
@@ -12,20 +11,23 @@ interface Props {
 
 const { title, items = [] } = Astro.props as Props;
 ---
-
-<section class="three-cards py-5">
+<section class="py-5">
   <div class="container">
-    {title ? <div class="row mb-4"><div class="col-12 text-center"><h2 class="u-font-heading">{title}</h2></div></div> : null}
+    {title && (
+      <div class="row mb-4">
+        <div class="col-12 text-center"><h2 class="font-heading">{title}</h2></div>
+      </div>
+    )}
 
     <div class="row">
-      {items.map(item => (
+      {items.map((item) => (
         <div class="col-12 col-md-4 mb-4">
-          <div class="card h-100 bg-white rounded-3 shadow-sm border-2">
-            <div class="card-body d-flex flex-column justify-content-between">
-              <div>
-                {item.heading ? <h3 class="card-title u-font-accent text-center mb-3 font-navy u-font-body text-uppercase">{item.heading}</h3> : null}
-                <div class="card-text text-center u-font-body" set:html={item.body}></div>
-              </div>
+          <div class="card h-100 bg-white rounded-4 border border-2 border-dark shadow-sm">
+            <div class="card-body text-center p-4">
+              {item.heading && (
+                <h3 class="card-title font-accent text-uppercase fs-5 text-navy mb-3">{item.heading}</h3>
+              )}
+              <div class="card-text font-body" set:html={item.body}></div>
             </div>
           </div>
         </div>

@@ -11,16 +11,18 @@ const links = [
   { href: '/contact', label: 'CONTACT', key: 'contact' }
 ];
 ---
-<nav class="navbar navbar-expand-lg site-nav pb-0 pt-3" aria-label="Main navigation">
+<nav class="navbar navbar-expand-lg site-nav bg-purple pt-3 pb-0" aria-label="Main navigation">
   <div class="container-fluid px-0">
-    <div class="w-100 d-flex justify-content-center" id="mainNav">
-      <ul class="nav nav-tabs border-0 w-100 flex-row flex-wrap justify-content-center align-items-end gap-0 gap-lg-2">
-        {links.map((link) => (
-          <li class="nav-item">
-            <a class:list={['nav-link', 'rounded-top-4', 'px-4', 'py-2','border-0', { active: current === link.key }]} href={link.href} aria-current={current === link.key ? 'page' : undefined}>{link.label}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul class="nav nav-tabs border-0 w-100 flex-row flex-wrap justify-content-center align-items-end gap-0 gap-lg-2">
+      {links.map((link) => (
+        <li class="nav-item">
+          <a
+            class:list={['nav-link', 'border-0', 'rounded-top-4', { active: current === link.key }]}
+            href={link.href}
+            aria-current={current === link.key ? 'page' : undefined}
+          >{link.label}</a>
+        </li>
+      ))}
+    </ul>
   </div>
 </nav>
